@@ -1,6 +1,7 @@
 version: '3.9'
 
 services:
+#front end client app to run on port 3000, depends on api(api) has to run first
   client:
     container_name: clientapp
     image: clientimage
@@ -14,6 +15,7 @@ services:
     networks:
       - yolomyapp-network
     stdin_open: true
+#here I create the backend container which runs on port 5000, from backend folder uses same network as clientapp, depends on mongodb container
   api:
     container_name: backendapp
     image: backendimage
@@ -31,7 +33,7 @@ services:
       - DB_NAME=yolomy
     depends_on: 
       - mongodb
-      
+#here i create the mongodb container using latest mongo image, runs on 27017 and same network with other containers      
   mongodb:
     container_name: db_container
     image: mongo:latest
