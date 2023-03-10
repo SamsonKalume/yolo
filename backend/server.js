@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const multer = require('multer');
 const upload = multer();
+//const dotenv = require("dotenv");
+//dotenv.config();
 
 const productRoute = require('./routes/api/productRoute');
 

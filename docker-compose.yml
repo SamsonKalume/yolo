@@ -4,7 +4,7 @@ services:
 #front end client app to run on port 3000, depends on api(api) has to run first
   client:
     container_name: clientapp
-    image: yoloclientimage
+    image: docker.io/skalume/yoloclientimage:v1.0.0
     build: 
       context: ./client
       dockerfile: Dockerfile
@@ -18,7 +18,7 @@ services:
 #here I create the backend container which runs on port 5000, from backend folder uses same network as clientapp, depends on mongodb container
   api:
     container_name: backendapp
-    image: yolobackendimage
+    image: docker.io/skalume/yolobackendimage:v1.0.0
     build:
       context: ./backend
       dockerfile: Dockerfile      
@@ -26,6 +26,8 @@ services:
       - "5000:5000"
     networks:
       - yolomyapp-network
+    #env_file:
+    #  - ./backend/.env
     volumes:
       - ./logs:/var/www/logs
     environment:
