@@ -7,8 +7,25 @@
 
 
 Dockerfile directives used in the creation and running of each container.
-Docker-compose Networking (Application port allocation and a bridge network implementation) where necessary.
-Docker-compose volume definition and usage (where necessary).
-Git workflow used to achieve the task.
-Successful running of the applications and if not, debugging measures applied.
-Good practices such as Docker image tag naming standards for ease of identification of images and containers. 
+
+# Network implementation
+- A bridge network has been added to connect the client, backend and database containers so that they can communicate with each other
+
+# Docker-compose volumes
+- To handle data persistent , a volume was assigned for the database container and also the backend container.
+
+# Git workflow tasks
+- The first task in dockerising the project was to first fork it from the repository. Then a clone in the local machine was done. This followed creation of two dockerfiles; the client dockerfile and backend dockerfile.
+- After creating the dockerfile, a docker compose file was created to be able to build the containers
+- Each task was followed with a commit back to the github repo.
+
+# Running the Containers
+- The containers have been pushed to dockerhub under the below repo:
+https://hub.docker.com/repositories/skalume
+- The name of the containers are skalume/yoloclientimage for the client app
+- The name of the backend container is skalume/yolobackendimage
+- and finally the database container is skalume/mongo
+
+# Docker image tagging
+- All docker images have been tagged with version numbers and follows the naming standards
+
