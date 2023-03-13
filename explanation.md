@@ -9,10 +9,27 @@
 # Dockerfiles description.
 - Two dockerfiles have been created, one for client application and the other for the backend application.
 ##  Client Dockerfile
-- On the client dockerfile, node image is used, a working directory is defined and then dependencies are installed via npm install and then files are copied to the container via COPY command. After that, port 3000 is exposed and finally a command to run the container is defined.
-##  Backend Application Dockerfile
-- On the backend dockerfile, node alpine image is used, a working directory is defined and then dependencies are installed via npm install and then files are copied to the container via COPY command. After that, port 5000 is exposed and finally a command to run the container is defined.
+- On the client dockerfile, node image is used, a working directory is defined and then dependencies are installed via npm install and then files are copied to the container via COPY command. After that, port 3000 is exposed and finally a command to run the container is defined. Below is the client dockerfile:
 
+FROM node:13.12.0-alpine 
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY .  .
+#RUN npm run build
+EXPOSE 3000
+
+CMD ["npm","run", "start"]
+##  Backend Application Dockerfile
+- On the backend dockerfile, node alpine image is used, a working directory is defined and then dependencies are installed via npm install and then files are copied to the container via COPY command. After that, port 5000 is exposed and finally a command to run the container is defined. Below is the definition of the backend application dockerfile:
+
+FROM node:alpine 
+WORKDIR /app
+COPY package.json package-lock.json*. /
+RUN npm install
+COPY .  .
+EXPOSE 5000
+CMD ["npm", "start"]
 
 # Network implementation
 - A bridge network has been added to connect the client, backend and database containers so that they can communicate with each other
