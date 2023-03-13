@@ -8,9 +8,9 @@
 
 # Dockerfiles description.
 - Two dockerfiles have been created, one for client application and the other for the backend application.
-#  Client Dockerfile
+##  Client Dockerfile
 - On the client dockerfile, node image is used, a working directory is defined and then dependencies are installed via npm install and then files are copied to the container via COPY command. After that, port 3000 is exposed and finally a command to run the container is defined.
-#  Backend Application Dockerfile
+##  Backend Application Dockerfile
 - On the backend dockerfile, node alpine image is used, a working directory is defined and then dependencies are installed via npm install and then files are copied to the container via COPY command. After that, port 5000 is exposed and finally a command to run the container is defined.
 
 
@@ -23,7 +23,7 @@
 # Git workflow tasks
 - The first task in dockerising the project was to first fork it from the repository. Then a clone in the local machine was done. This followed creation of two dockerfiles; the client dockerfile and backend dockerfile.
 - After creating the dockerfile, a docker compose file was created to be able to build the containers
-- Each task was followed with a commit back to the github repo.
+- Each task was followed with a commit back to the github repo after a change.
 
 # Running the Containers
 - The containers have been pushed to dockerhub under the below repo:
