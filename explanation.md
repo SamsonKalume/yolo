@@ -54,3 +54,7 @@ Once you clone the project, all containers can be run via docker compose up comm
 # Docker image tagging
 - All docker images have been tagged with version numbers and follows the naming standards
 
+
+
+#The below changes of the explanation.md file are for IP3 on ansible automation
+
