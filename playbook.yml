@@ -20,9 +20,19 @@
         repo: "{{ app_repo_url }}"
         dest: "{{ app_root_dir }}"
         version: "{{ app_repo_branch }}"
-        
+
   #Task Number 2 is to install docker and docker compose        
     - name: Install Docker and Docker Compose for Containers
       apt_key:
         url: https://download.docker.com/linux/ubuntu/gpg
         state: present      
+    - name: Add Docker Repository
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu focal stable
+        state: present
+
+    - name: Update apt and install docker-ce
+      apt:
+        name: docker-ce
+        state: latest
+        update_cache: true
