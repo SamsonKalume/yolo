@@ -1,0 +1,4 @@
+---
+- name: Configuration Management IP4- This will clone Yolo Repo, Create Vagrant VM and set up app in containers with Docker Compose
+  hosts: all
+  become: true
