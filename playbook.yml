@@ -42,3 +42,11 @@
       command: docker compose up -d
       args:
         chdir: "{{ app_root_dir }}"   
+    
+    #Test to see if the App can open on browser after settig up containers
+    - name: Open app in browser
+      uri:
+        url: "http://{{ vm_network_ip }}:3000"
+        return_content: yes
+        status_code: 200
+      register: app_response
