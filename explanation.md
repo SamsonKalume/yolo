@@ -111,12 +111,9 @@ command: docker compose up -d
         chdir: "{{ app_root_dir }}" 
 I also specify the directory where the docker compose file is located so that the command picks it and runs it.
 
-
-
 # task 4
 Once the containers are run, i included a task to test the app(Test to see if the App can open on browser after settig up containers), to see if the app is running on the browser.
 This task uses the uri module to test if the app is running by accessing its URL in the browser. The URL is constructed using the IP address specified in the vm_network_ip variable and the default port 3000.
-
 I point it to the client URL, and register an output which i print it in the next task
 
 
