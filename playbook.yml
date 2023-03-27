@@ -36,3 +36,9 @@
         name: docker-ce
         state: latest
         update_cache: true
+    
+    #Build and Run the containers using the docker-compose yml file in the project
+    - name: Build and run Docker containers(client, backend and Mongo DB)
+      command: docker compose up -d
+      args:
+        chdir: "{{ app_root_dir }}"   
