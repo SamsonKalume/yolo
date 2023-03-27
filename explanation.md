@@ -121,7 +121,10 @@ I point it to the client URL, and register an output which i print it in the nex
 This is just to debug the previous Task, which is mainly to display the Response from the above test
 This task prints out the content of the response received from the app's URL in the previous task. The app_response variable is registered in the uri task and then accessed using the debug module.
 
-The playbook can be launched via vagrant up or vagrant provision(once vm is up) and ansible play playbook.rml
+The playbook can be launched via vagrant up or vagrant provision(once vm is up) and ansible play playbook.rml.
+In case Task 4 shows doesnt return a 200, run vagrant provision or try to browse the site via http://192.168.56.10:3000 
+
+The site can be launched via http://192.168.56.10:3000.
 
 
 
