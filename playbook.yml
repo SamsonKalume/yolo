@@ -50,3 +50,8 @@
         return_content: yes
         status_code: 200
       register: app_response
+    
+    #Receive the output that was registered on task above and print it out
+    - name: Display app response
+      debug:
+        var: app_response.content
