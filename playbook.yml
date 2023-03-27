@@ -2,3 +2,12 @@
 - name: Configuration Management IP4- This will clone Yolo Repo, Create Vagrant VM and set up app in containers with Docker Compose
   hosts: all
   become: true
+
+  vars:
+    app_repo_url: "https://github.com/SamsonKalume/yolo.git"
+    app_repo_branch: "master"
+    app_root_dir: "/vagrant/app"
+    vm_name: "myappvm"
+    vm_box: "ubuntu/focal64"
+    vm_network_ip: "192.168.56.10"
+    role_name: "github"
