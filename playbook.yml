@@ -3,6 +3,7 @@
   hosts: all
   become: true
 
+  #Define Variables to be used within the playbook
   vars:
     app_repo_url: "https://github.com/SamsonKalume/yolo.git"
     app_repo_branch: "master"
@@ -11,10 +12,17 @@
     vm_box: "ubuntu/focal64"
     vm_network_ip: "192.168.56.10"
     role_name: "github"
-    
+
+  #Task Number 1 is to clone app from github Repo
   tasks:
     - name: Clone Yolo App code from my GitHub Repo
       git:
         repo: "{{ app_repo_url }}"
         dest: "{{ app_root_dir }}"
         version: "{{ app_repo_branch }}"
+        
+  #Task Number 2 is to install docker and docker compose        
+    - name: Install Docker and Docker Compose for Containers
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present      
