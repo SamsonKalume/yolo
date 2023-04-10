@@ -1,3 +1,6 @@
+# For IP 4 , please read through the explanation.md file, from the IP4 Section on the Deployment of the Application to Google Kubernettes Engine downwards
+
+
 # Requirements
 Make sure that you have the following installed:
 - [node](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-18-04) 
