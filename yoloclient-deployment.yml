@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yoloclient
+  annotations:
+    description: "This is a client Deployment yaml file"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client
+  template:
+    metadata:
+      labels:
+        app: client
+    spec:
+      containers:
+        - name: client
+          image: skalume/yoloclientimage:v1.0.2
+          ports:
+            - containerPort: 3000
+          env:
+            - name: SERVER_HOST
+              value: "10.44.129.98"
+            - name: SERVER_PORT
+              value: "5000"
