@@ -3,6 +3,8 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: server-statefulset
+  annotations:
+    description: "This is a yaml file for creating a backend pod and mongo , its a stateful set"
 spec:
   serviceName: "mongo"
   replicas: 1
