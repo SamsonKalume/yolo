@@ -22,11 +22,11 @@ spec:
         ports:
         - containerPort: 5000
         env:
-  - name: MONGODB_URI
-    valueFrom:
-      secretKeyRef:
-        name: my-secrets
-        key: mongodb-uri
+        - name: MONGODB_URI
+          valueFrom:
+            secretKeyRef:
+              name: my-secrets
+              key: mongodb-uri
         volumeMounts:
         - name: data
           mountPath: /app/data
