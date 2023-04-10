@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-service
+  annotations:
+    description: "This is a yaml file for creating a client service that exposes port 3000 to internet traffic"
+spec:
+  selector:
+    app: client
+  type: LoadBalancer
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 3000
