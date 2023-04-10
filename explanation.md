@@ -128,6 +128,71 @@ The site can be launched via http://192.168.56.10:3000.
 
 
 
+# IP 4 STARTS HERE...........
+# The below changes of the explanation.md file are for IP4 on Deployment of the App to GKE
+# 1. Decisions...
+  
+  # Choice of the Kubernetes Objects used for deployment (Use of - or the lack of use - of StatefulSets for storage solutions).
+  Backend Deployment file(yoloserver-deployment.yml)
+  
+  The StatefulSet object is used for managing stateful applications and provides guarantees around the order of deployment, scaling, and deletion of pods. In this case, the StatefulSet defines two containers, one for the server and one for MongoDB, and specifies the number of replicas to be 1. It also creates a volume for the MongoDB data and mounts it to the container's file system. This ensures that the MongoDB data is persisted even if the container is restarted or rescheduled to a different node.
 
+  # Method used to expose your pods to internet traffic
+  A Service object in Kubernetes provides a stable IP address and DNS name for a set of pods and enables communication with those pods by using a selector. From the client-service.yml file, the selector is set to app: client, which means that this Service object will select all pods with the app: client label.
+
+  The type field in the client-service.yml file is set to LoadBalancer, which instructs Kubernetes to provision an external load balancer that forwards traffic to the pods selected by the Service object. This will expose the pod to the internet, allowing external traffic to access the pod.
+
+  The ports field in the client-service.yml file specifies the port mappings between the Service and the pod. In this case, the http port is mapped to port 80 of the Service and port 3000 of the pod. This means that traffic to port 80 of the Service will be forwarded to port 3000 of the pod.
+
+  # Use-of or there-lack-of of persistent storage
+ 
+  From the backend deployment file(yoloserver-deployment.yml),  PersistentVolumeClaim object is used to request storage resources from the Kubernetes cluster. In this case, it requests 1Gi of storage with ReadWriteOnce access mode, meaning that only one pod can access the volume at a time. The storage class used is "standard", which typically maps to the default storage class of the cluster.
+  I used a StatefulSet for managing the deployment of the application as it provides guarantees around the ordering and scaling of pods. The use of a PersistentVolumeClaim ensures that the data is persisted even if the pod is restarted or rescheduled to a different node. 
+
+ # 2. Tasks
+   ## task 1 - Creating Google Kubernettes cluster in Google Cloud Platform(GCP)
+   The first task involved creating a Kubernetes cluster in GCP so that I could deploy containers and also services
+
+  ## task 2
+  Task 2 involved creation of deployment manifest files.
+
+  - Client Deployment file
+   The client deployment YAML file(yoloclient-deployment.yml) is a configuration for the client application. It specifies the container image to use, the number of replicas to run, and the container port to expose.
+  The deployment is named "yoloclient" and has a single replica. The selector matches the label "app: client", which is also specified in the template metadata. The template specifies the container details, including the name, image, and the port to expose.
+  In this case, the client container listens on port 3000 and has two environment variables SERVER_HOST and SERVER_PORT which are set to the IP address and port of the backend server respectively.
+
+  - Client Service file
+  This was created to expose client pod to internet traffic via a loadbalancer.
+  This YAML file is used to create a Kubernetes Service that exposes a client application to internet traffic.
+  It specifies that we are creating a Service resource in Kubernetes and also specifies metadata for the Service resource, such as its name and annotations.
+  The file also specifies the type of the Service as LoadBalancer, which means that the Service will be exposed externally using a cloud provider's load balancer.It also specifies the ports that the Service should listen on and forward traffic to.
+  port: 80: This specifies the port number that the Service should listen on.
+  targetPort: 3000: This specifies the port number that the Service should forward traffic to on the Pods selected by the selector. In this case, it forwards traffic to port 3000 on the client Pods.
+
+
+  - Backend deployment file
+  The backend YAML file (yoloserver-deployment.yml) defines a Kubernetes StatefulSet object that manages a stateful application consisting of two containers: server, and a MongoDB database. The StatefulSet also includes a PersistentVolumeClaim object that defines the storage requirements for the StatefulSet.
+
+  The metadata field of the StatefulSet object contains the name of the StatefulSet, and the spec field defines the desired state of the StatefulSet. The serviceName field in the spec field specifies the name of the Kubernetes Service object that this StatefulSet should be associated with.
+
+  The replicas field in the spec field specifies the desired number of replicas (in this case, 1) of the StatefulSet.
+  The selector field in the spec field specifies the labels that are used to select the pods that this StatefulSet object will manage.
+  The template field in the spec field specifies the desired state of the pods that this StatefulSet object creates. This includes the labels to be applied to the pods and the container specifications.
+
+  The containers field in the template field specifies the two containers that make up the stateful application. The server container runs an image called skalume/yolobackendimage:v1.0.0, exposes port 5000, and sets an environment variable called MONGODB_URI to connect to the MongoDB container. The mongo container runs the mongo image, exposes port 27017, and mounts the same persistent volume as the server container.
+  
+  - Backend Service
+  This file exposes the backend api so that it can be accessed by the client. I wanted to also use this to test the api from external traffic.
+  The metadata field contains the name of the Service object and an annotation describing the purpose of the Service.
+
+  The selector field in the YAML file specifies the labels that are used to select the pods that this Service object will route traffic to. In this case, the selector is set to app: server, which means that this Service object will select all pods with the app: server label.
+
+  The ports field in the YAML file specifies the port mappings between the Service and the pods. In this case, the http port is mapped to port 5000 of both the Service and the pod.
+
+  Finally, the type field in the YAML file is set to LoadBalancer, which instructs Kubernetes to provision an external load balancer that forwards traffic to the selected pods. This will expose the backend service to external traffic, allowing clients to connect to it through the public IP address of the load balancer.
+
+
+  ## Accessing the Website
+  The website can be accessed via http://35.202.191.155:80/
 
 
