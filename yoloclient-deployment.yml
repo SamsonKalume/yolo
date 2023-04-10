@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: client
-          image: skalume/yoloclientimage:v1.0.2
+          image: skalume/yoloclientimage:v1.0.3
           ports:
             - containerPort: 3000
           env:
