@@ -22,8 +22,11 @@ spec:
         ports:
         - containerPort: 5000
         env:
-        - name: MONGODB_URI
-          value: "mongodb+srv://samsonkalume:Sa@ka@420N@moringa.kegv4xm.mongodb.net/yolomy?retryWrites=true&w=majority"
+  - name: MONGODB_URI
+    valueFrom:
+      secretKeyRef:
+        name: my-secrets
+        key: mongodb-uri
         volumeMounts:
         - name: data
           mountPath: /app/data
