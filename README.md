@@ -1,5 +1,8 @@
 # For IP 4 , please read through the explanation.md file, from the IP4 Section on the Deployment of the Application to Google Kubernettes Engine downwards
 
+## Accessing the Website
+  The website can be accessed via http://35.202.191.155:80/
+
 
 # Requirements
 Make sure that you have the following installed:
