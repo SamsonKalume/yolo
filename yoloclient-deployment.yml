@@ -22,6 +22,6 @@ spec:
             - containerPort: 3000
           env:
             - name: SERVER_HOST
-              value: "10.44.129.98"
+              value: "server-service"
             - name: SERVER_PORT
               value: "5000"
