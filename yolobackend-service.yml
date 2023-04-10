@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: server-service
+  annotations:
+    description: "This is a yaml file for creating a backend service that exposes port 5000"
+spec:
+  selector:
+    app: server
+  ports:
+    - name: http
+      port: 5000
+      targetPort: 5000
+  type: LoadBalancer
